@@ -19,9 +19,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import cm
 
 # -------------------------
-# Definicja modelu (Model_0)
+# Definicja modelu (Final_Model)
 # -------------------------
-class Model_0(nn.Module):
+class Final_Model(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=48, kernel_size=3, padding=1)
@@ -54,7 +54,7 @@ os.makedirs(REPORTS_DIR, exist_ok=True)
 # -------------------------
 model = None
 try:
-    model = Model_0()
+    model = Final_Model()
     state = torch.load(MODEL_PATH, map_location="cpu")
     model.load_state_dict(state)
     model.eval()
@@ -424,7 +424,7 @@ class AppUI:
 
         # Informacja o modelu
         t.moveCursor(0, 10)
-        t.textLine("Model: Model_0 (PyTorch)")
+        t.textLine("Model: Final_Model (PyTorch)")
 
         c.drawText(t)
         c.showPage()
